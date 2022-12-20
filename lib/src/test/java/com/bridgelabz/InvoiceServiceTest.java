@@ -68,4 +68,18 @@ class InvoiceServiceTest {
 		Assertions.assertEquals(expectedInvoice, actualInvoice);
 	}
 
+	@Test
+	void givenUserIdHavingPremiumRides_ShouldReturn_Invoice() {
+		Ride ride1 = new Ride(10, 6, Ride.RideCategory.PREMIUM_RIDE);
+		Ride ride2 = new Ride(15, 8);
+		Ride ride3 = new Ride(0.2, 2);
+		Ride[] rides1 = new Ride[] { ride1, ride2, ride3 };
+		RideRepository.customerList.add(new Customer(1, rides1));
+		InvoiceGenerator obj = new InvoiceGenerator();
+		double totalFare = obj.calculateFareForMultipleRides(rides1);
+		InvoiceSummary actualInvoice = InvoiceService.generateInvoiceById(1);
+		InvoiceSummary expectedInvoice = new InvoiceSummary(rides1.length, totalFare, totalFare / rides1.length);
+		Assertions.assertEquals(actualInvoice, expectedInvoice);
+	}
+
 }
