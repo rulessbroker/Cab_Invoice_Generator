@@ -21,7 +21,16 @@ public class InvoiceGenerator {
 		for (Ride ride : rides) {
 			totalFare = calculateTotalFare(ride.getDistance(), ride.getTime());
 		}
-		
+
 		return totalFare;
 	}
+
+	public InvoiceSummary invoiceSummaryCalculation(Ride[] rides) {
+		double totalFare = 0.0;
+		for (Ride ride : rides) {
+			totalFare = totalFare + calculateTotalFare(ride.getDistance(), ride.getTime());
+		}
+		return new InvoiceSummary(rides.length, totalFare, totalFare / rides.length);
+	}
+
 }
