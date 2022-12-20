@@ -30,9 +30,6 @@ public class InvoiceSummary {
 				&& Double.compare(that.avgFare, avgFare) == 0;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(numOfRides, totalFare, avgFare);
-	}
+	
 
 }
