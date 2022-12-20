@@ -11,7 +11,7 @@ class InvoiceServiceTest {
 		double distance = 2.0;
 		int time = 5;
 		double fare = invoiceGenerator.calculateTotalFare(distance, time);
-		Assertions.assertEquals(25, fare, 0.0);
+		Assertions.assertEquals(25, fare);
 
 	}
 
@@ -21,8 +21,30 @@ class InvoiceServiceTest {
 		double distance = 0.1;
 		int time = 1;
 		double fare = invoiceGenerator.calculateTotalFare(distance, time);
-		Assertions.assertEquals(5, fare, 0.0);
+		Assertions.assertEquals(5, fare);
 
+	}
+
+	@Test
+	public void givenMultipleRides_ShouldReturnTotalOfTotalFare() {
+		Ride[] rides = { new Ride(4.0, 5), 
+						 new Ride(5.0, 10),
+						 new Ride(0.1, 1),
+						 new Ride(20, 60) };
+		InvoiceGenerator invoiceService = new InvoiceGenerator();
+		double totalFare = invoiceService.calculateFareForMultipleRides(rides);
+		Assertions.assertEquals(260, totalFare);
+	}
+	
+	@Test
+	public void givenMultipleRides_ShouldReturnAggregateOfTotalFare() {
+		Ride[] rides = { new Ride(4.0, 5), 
+						 new Ride(5.0, 10),
+						 new Ride(0.1, 1),
+						 new Ride(20, 60) };
+		InvoiceGenerator invoiceService = new InvoiceGenerator();
+		double totalFare = invoiceService.calculateFareForMultipleRides(rides);
+		Assertions.assertEquals(65, totalFare/4);
 	}
 
 }
