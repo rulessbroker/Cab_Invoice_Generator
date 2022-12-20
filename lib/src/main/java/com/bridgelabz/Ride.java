@@ -1,6 +1,7 @@
 package com.bridgelabz;
 
 public class Ride {
+	
 	private final double distance;
 	private final int time;
 

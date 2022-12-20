@@ -21,6 +21,7 @@ public class InvoiceGenerator {
 		for (Ride ride : rides) {
 			totalFare = calculateTotalFare(ride.getDistance(), ride.getTime());
 		}
+		
 		return totalFare;
 	}
 }
