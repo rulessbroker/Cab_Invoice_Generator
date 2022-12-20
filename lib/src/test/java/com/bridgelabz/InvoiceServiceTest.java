@@ -45,6 +45,7 @@ class InvoiceServiceTest {
 		InvoiceGenerator invoiceService = new InvoiceGenerator();
 		double totalFare = invoiceService.calculateFareForMultipleRides(rides);
 		Assertions.assertEquals(65, totalFare/4);
+		
 	}
 
 }
